@@ -5,25 +5,50 @@
 #define N 100
 #define T 10
 
+typedef struct {
+    int *vec;
+    int index;
+} vec_slice;
+
+
 void *sum(void *arg) {
-    int index = (int)arg;
-    printf("Starting from %d\n", index);
+    vec_slice *slice = (vec_slice *) arg;
+    int sum = 0;
+
+    for (int i = slice->index; i < slice->index + N/T; i++)
+        sum += slice->vec[i];
+
+    printf("Sum = %d\n", sum);
+
+    return (void *) sum;
 }
+
 
 int main() {
     int *vec = malloc(sizeof(int)*N);
-    int i;
+    int i, total_sum = 0;
+    void *aux;
     pthread_t threads[T];
 
     for(i = 0; i < N; i++) {
-        vec[i] = rand()%N;
+        //vec[i] = rand()%N;
+        vec[i] = i+1;
     }
 
+    for(i = 0; i < T; i++) {
+        vec_slice *slice = malloc(sizeof(vec_slice));
+        slice->vec = vec;
+        slice->index = i*N/T;
 
-    for(i = 0; i < N; i += N/T) {
-        pthread_create(&threads[i], NULL, sum, (void*)i);
+        pthread_create(&threads[i], NULL, sum, (void*) slice);
     }
 
+    for(i = 0; i < T; i++) {
+        pthread_join(threads[i], &aux);
+        total_sum += (int) aux;
+    }
+
+    printf("%d\n", total_sum);
 
     free(vec);
     return 0;
