@@ -2,14 +2,13 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-#define N 100
-#define T 10
+#define N 10e+4
+#define T 100
 
 typedef struct {
     int *vec;
     int index;
 } vec_slice;
-
 
 void *sum(void *arg) {
     vec_slice *slice = (vec_slice *) arg;
@@ -17,6 +16,7 @@ void *sum(void *arg) {
 
     for (int i = slice->index; i < slice->index + N/T; i++)
         sum += slice->vec[i];
+
 
     printf("Sum = %d\n", sum);
 
@@ -33,6 +33,7 @@ int main() {
     for(i = 0; i < N; i++) {
         //vec[i] = rand()%N;
         vec[i] = i+1;
+        printf("i = %d\n", i);
     }
 
     for(i = 0; i < T; i++) {
