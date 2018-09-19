@@ -13,8 +13,8 @@ int main(int argc, char *argv[]) {
 
     send_buf = myrank;
 
-    MPI_Send((void *) &send_buf, 1, MPI_INT, (myrank+1)%npes, 0, MPI_COMM_WORLD);
-    MPI_Recv((void *) &recv_buf, 1, MPI_INT, (myrank+7)%npes, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    MPI_Send((void *) &send_buf, 1, MPI_INT, (myrank + 1) % npes, 0, MPI_COMM_WORLD);
+    MPI_Recv((void *) &recv_buf, 1, MPI_INT, (myrank + npes - 1) % npes, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
 
 
