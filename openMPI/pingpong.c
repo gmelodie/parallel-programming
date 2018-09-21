@@ -16,6 +16,7 @@ int main(int argc, char *argv[]) {
     if(npes != 2) {
         printf("Error: must have exactly 2 players, got %d\n", npes);
         MPI_Finalize();
+        return 1;
     }
 
 
