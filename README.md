@@ -19,4 +19,4 @@ OpenMP (Open Multi-Processing) is an application programming interface (API) tha
 
 ## OpenMPI
 
-Open MPI is a Message Passing Interface (MPI) library project combining technologies and resources from several other projects (FT-MPI, LA-MPI, LAM/MPI, and PACX-MPI). It is used by many TOP500 supercomputers including Roadrunner, which was the world's fastest supercomputer from June 2008 to November 2009,and K computer, the fastest supercomputer from June 2011 to June 2012.
+Open MPI (based on Message Passing Interface) is also a programming platform, but instead provides one the ability to parallelize code over a (non-)homogenous distributed system (e.g., a supercomputer).  For instance, it's possible to parallelize an entire program over a network of computers, or nodes, which communicate over the same network.  Since these nodes are essentially computers, they have their own memory layout and their own set of cores (see OpenMP description).  Communication between nodes, when compared to shared memory systems, can be difficult and is usually expensive.
