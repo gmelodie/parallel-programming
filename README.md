@@ -2,10 +2,12 @@
 My parallel programming learning code snippets
 
 
-## Contents
+## Pthreads
+pthreads explaination
 
-- Pthreads
+### Files
+- helloWorld.c: spawns various pthreads, each of which prints its thread ID
 
-- OpenMP
+## OpenMP
 
-- OpenMPI
+## OpenMPI
