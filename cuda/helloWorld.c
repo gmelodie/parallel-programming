@@ -1,5 +1,6 @@
-
-#include <cuda.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cutils.h>
 
 __global__
 void doNothing() {
